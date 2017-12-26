@@ -11,7 +11,7 @@
                 <plugin>
                     <groupId>com.lazerycode.jmeter</groupId>
                     <artifactId>jmeter-maven-plugin</artifactId>
-                    <version>2.6.0</version>
+                    <version>2.4.1</version>
                     <executions>
                         <execution>
                             <id>jmeter-tests</id>
@@ -20,11 +20,7 @@
                             </goals>
                         </execution>
                     </executions>
-                     <configuration>
-                     		<generateReports>false</generateReports>
-                          <resultsFileFormat>XML</resultsFileFormat>
-                           <testResultsTimestamp>false</testResultsTimestamp>
-                    </configuration>
+
                 </plugin>
             </plugins>
         </build>
