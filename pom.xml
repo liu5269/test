@@ -21,8 +21,9 @@
                         </execution>
                     </executions>
                      <configuration>
-                     <generateReports>false</generateReports>
+                     		<generateReports>false</generateReports>
                           <resultsFileFormat>XML</resultsFileFormat>
+                           <testResultsTimestamp>false</testResultsTimestamp>
                     </configuration>
                 </plugin>
             </plugins>
