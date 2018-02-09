@@ -1,0 +1,10 @@
+execution:
+- executor: gatling
+  concurrency: 1000
+  ramp-up: 0
+  hold-for: 1m
+  scenario: example
+
+scenarios:
+  example:
+    script: 555.scala
