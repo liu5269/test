@@ -7,7 +7,9 @@ import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
 class RecordedSimulation extends Simulation {
-
+  val t_concurrency = Integer.getInteger("concurrency", 1000).toInt
+  val t_rampUp = Integer.getInteger("ramp-up", 1).toInt
+  val t_holdFor = Integer.getInteger("hold-for", 60).toInt
 	val httpProtocol = http
 		.baseURL("http://172.16.20.154:3000")
 		.inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.(t|o)tf""", """.*\.png"""), WhiteList())
@@ -20,10 +22,12 @@ class RecordedSimulation extends Simulation {
 
 
 
-	val scn = scenario("RecordedSimulation")
+	val scn = scenario("RecordedSimulation").forever(){
 		.exec(http("request_0")
 			.get("/")
 			.headers(headers_0))
-
-	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
+			}
+			
+	val execution = scenario.inject(rampUsers(t_concurrency) over t_rampUp)
+	setUp(execution).throttle(holdFor(t_holdFor)).maxDuration(t_rampUp + t_holdFor)
 }
