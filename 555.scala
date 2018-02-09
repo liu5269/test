@@ -21,7 +21,7 @@ class RecordedSimulation extends Simulation {
 	val headers_0 = Map("Upgrade-Insecure-Requests" -> "1")
 
 
-
+	val request_0 = ""
 	val scn = scenario("RecordedSimulation").forever(){
 		.exec(http("request_0")
 			.get("/")
