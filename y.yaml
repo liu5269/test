@@ -9,5 +9,5 @@ scenarios:
   complex_sample:
    headers:
     User-Agent: Mozilla/5.0
-   -requests:
-    url:http://172.16.20.154:3000
+   requests:
+      url:http://172.16.20.154:3000
