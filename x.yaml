@@ -4,8 +4,12 @@ execution:
   hold-for: 1m
   scenario: with_prop
 
-
+modules:
+  jmeter:
+    gui: false  # set it to true to open JMeter GUI instead of running non-GUI test
+    memory-xmx: 4G
 scenarios:
   with_prop:
-    requests:
-    - http://172.16.20.154:3000
+        requests:
+        -   url:http://172.16.20.154:3000
+            method: POST  # request method (GET, POST, PUT, DELETE)
