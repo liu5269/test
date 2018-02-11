@@ -8,7 +8,7 @@ execution:
 modules:
   jmeter:
     gui: false  # set it to true to open JMeter GUI instead of running non-GUI test
-    memory-xmx: 4G
+    memory-xmx: 2G
 scenarios:
   with_prop:
         requests:
