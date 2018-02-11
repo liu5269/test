@@ -29,5 +29,5 @@ class RecordedSimulation extends Simulation {
 			}
 			
 	
-	setUp(execution).throttle(holdFor(60)).protocols(httpProtocol).inject(rampUsers(1000))
+	setUp(scn).throttle(holdFor(60)).protocols(httpProtocol).inject(rampUsers(1000))
 }
