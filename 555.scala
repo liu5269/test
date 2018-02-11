@@ -12,7 +12,6 @@ class RecordedSimulation extends Simulation {
   val t_holdFor = Integer.getInteger("hold-for", 60).toInt
 	val httpProtocol = http
 		.baseURL("http://172.16.20.154:3000")
-		.inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.(t|o)tf""", """.*\.png"""), WhiteList())
 		.acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
 		.acceptEncodingHeader("gzip, deflate")
 		.acceptLanguageHeader("zh-CN,zh;q=0.9")
@@ -27,7 +26,11 @@ class RecordedSimulation extends Simulation {
 			.get("/")
 			.headers(headers_0))
 			}
-			
+	val execution = scn
+		.inject(rampUsers(t_concurrency) over t_rampUp)
+		.protocols(httpProtocol)
 	
-	setUp(scn.inject(rampUsers(1000).throttle(holdFor(60)))).protocols(httpProtocol)
+	setUp(execution)
+		.throttle(holdFor(t_holdFor))
+		.maxDuration(t_rampUp + t_holdFor)
 }
