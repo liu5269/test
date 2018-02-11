@@ -8,7 +8,8 @@
 scenarios:
   complex_sample:
     default-address: 172.16.20.154:3000
-    headers:
-      User-Agent: Mozilla/5.0
+
     requests:
-      url: /
+     - url: /
+      headers:
+        User-Agent: Mozilla/5.0
