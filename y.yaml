@@ -1,10 +1,18 @@
 execution:
 - executor: gatling
-  scenario: example
-  
+  concurrency: 1000
+  ramp-up: 1
+  hold-for: 1
+  scenario: complex_sample
 
 scenarios:
-  example:
-    script: 555.scala
-    simulation: test.RecordedSimulation
+  complex_sample:
+    
+    default-address: 172.16.20.154:3000
+    headers:
+      HEADER_1: VALUE_1
+      HEADER_2: VALUE_2
+    requests:
+    - url: /
+      body: ''
     
