@@ -1,5 +1,6 @@
 execution:
-- concurrency: 1000   # use `my_conc` prop or default=3 if property isn't found
+- executor: jmeter
+  concurrency: 1000   # use `my_conc` prop or default=3 if property isn't found
   ramp-up: 1
   hold-for: 1m
   scenario: with_prop
@@ -11,5 +12,4 @@ modules:
 scenarios:
   with_prop:
         requests:
-        -   url:http://172.16.20.154:3000
-            method: POST  # request method (GET, POST, PUT, DELETE)
+          -  http://172.16.20.154:3000
