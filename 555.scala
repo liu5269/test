@@ -28,6 +28,6 @@ class RecordedSimulation extends Simulation {
 			.headers(headers_0))
 			}
 			
-	val execution = scn.inject(rampUsers(1000))
-	setUp(execution).throttle(holdFor(60)).protocols(httpProtocol)
+	
+	setUp(execution).throttle(holdFor(60)).protocols(httpProtocol).inject(rampUsers(1000))
 }
