@@ -1,20 +1,11 @@
 execution:
-- concurrency: 1000
+- concurrency: 1000   # use `my_conc` prop or default=3 if property isn't found
+  ramp-up: 1
   hold-for: 1m
-  ramp-up: 0
-  scenario: yaml_example
-  
+  scenario: with_prop
+
+
 scenarios:
-  yaml_example:
-    retrieve-resources: false
+  with_prop:
     requests:
-      - http://172.16.20.154:3000
-
-reporting:
-- module: final-stats
-- module: console
-
-settings:
-  default-executor: gatling
-
-provisioning: local
+    - http://172.16.20.154:3000
