@@ -10,6 +10,6 @@ scenarios:
     default-address: 172.16.20.154:3000
 
     requests:
-     - url: /
+      url: /
       headers:
         User-Agent: Mozilla/5.0
