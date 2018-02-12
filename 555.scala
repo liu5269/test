@@ -12,6 +12,7 @@ class RecordedSimulation extends Simulation {
 		.acceptEncodingHeader("gzip, deflate")
 		.disableCaching
 		.disableResponseChunksDiscarding
+		.maxConnectionsPerHost(max: 1)
 
 
 
@@ -19,10 +20,18 @@ class RecordedSimulation extends Simulation {
 	val scn = scenario("RecordedSimulation")
 			.exec(http("request_0")
 			.post("/")
+			)
+			
 			
 	
 		
 	
-	setUp(scn.inject(atOnceUsers(1000)).throttle(holdFor(1 minute)).protocols(httpProtocol))
+	setUp(
+	
+			scn.inject(atOnceUsers(1000))
+			).throttle(holdFor(1 minute)).protocols(httpProtocol)
+	
+	
+	
 
 }
