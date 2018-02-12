@@ -1,15 +1,9 @@
 ﻿execution:
 - executor: gatling
-  concurrency: 1000
-  ramp-up: 1
-  hold-for: 1m
-  scenario: complex_sample
+  scenario: sample
 
 scenarios:
-  complex_sample:
-    default-address: 172.16.20.154:3000
-
-    requests:
-      url: /
-      headers:
-        User-Agent: Mozilla/5.0
+  sample:
+    script: 555.scala
+    simulation: tests.RecordedSimulation
+    keepalive: true

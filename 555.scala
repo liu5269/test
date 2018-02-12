@@ -14,6 +14,8 @@ class RecordedSimulation extends Simulation {
 		.baseURL("http://172.16.20.154:3000")
 		.acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
 		.acceptEncodingHeader("gzip, deflate")
+		.disableCaching
+		.disableResponseChunksDiscarding
 		.acceptLanguageHeader("zh-CN,zh;q=0.9")
 		.userAgentHeader("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36")
 
@@ -23,14 +25,12 @@ class RecordedSimulation extends Simulation {
 
 	val scn = scenario("RecordedSimulation").forever(){
 		     exec(http("request_0")
-			.get("/")
+			.post("/")
 			.headers(headers_0))
 			}
-	val execution = scn
-		.inject(rampUsers(t_concurrency) over t_rampUp)
-		.protocols(httpProtocol)
 	
-	setUp(execution)
-		.throttle(holdFor(t_holdFor))
-		.maxDuration(t_rampUp + t_holdFor)
+		
+	
+	setUp(scn.inject(atOnceUsers(1000)).throttle(holdFor(1 minute))protocols(httpProtocol))
+
 }
